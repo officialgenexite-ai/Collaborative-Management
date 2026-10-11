@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Auth + Workspace — Test Harness</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🧪 Auth + Workspace Test Harness</h1>
+
+    <div class="config-bar">
+      <label>API Base URL</label>
+      <input type="text" id="apiBase" value="http://localhost:5000/api" />
+    </div>
+
+    <div class="status-bar" id="statusBar">
+      Not logged in
+    </div>
+
+    <div class="grid">
+
+      <!-- ================= AUTH SECTION ================= -->
+      <section class="card">
+        <h2>1️⃣ Register</h2>
+        <input type="text" id="regName" placeholder="Full Name" />
+        <input type="email" id="regEmail" placeholder="Name123@gmail.com" />
+        <input type="password" id="regPassword" placeholder="Password (Aa1@aaaa)" />
+        <input type="password" id="regConfirmPassword" placeholder="Confirm Password" />
+        <button onclick="registerUser()">Register</button>
+        <pre id="regOutput"></pre>
+      </section>
+
+      <section class="card">
+        <h2>2️⃣ Verify OTP</h2>
+        <input type="email" id="otpEmail" placeholder="Email" />
+        <input type="text" id="otpCode" placeholder="6-digit OTP" />
+        <button onclick="verifyOtp()">Verify OTP</button>
+        <pre id="otpOutput"></pre>
+      </section>
+
+      <section class="card">
+        <h2>3️⃣ Login</h2>
+        <input type="email" id="loginEmail" placeholder="Email" />
+        <input type="password" id="loginPassword" placeholder="Password" />
+        <button onclick="loginUser()">Login</button>
+        <button class="secondary" onclick="googleLogin()">Login with Google</button>
+        <pre id="loginOutput"></pre>
+      </section>
+
+      <section class="card">
+        <h2>4️⃣ Session</h2>
+        <button onclick="checkToken()">Show Current Token</button>
+        <button class="danger" onclick="logoutUser()">Logout</button>
+        <pre id="sessionOutput"></pre>
+      </section>
+
+      <!-- ================= WORKSPACE SECTION ================= -->
+      <section class="card">
+        <h2>5️⃣ Create Workspace</h2>
+        <input type="text" id="wsName" placeholder="Workspace Name" />
+        <input type="text" id="wsDesc" placeholder="Description (optional)" />
+        <button onclick="createWorkspace()">Create Workspace</button>
+        <pre id="wsCreateOutput"></pre>
+      </section>
+
+      <section class="card">
+        <h2>6️⃣ My Workspaces</h2>
+        <button onclick="getMyWorkspaces()">Refresh List</button>
+        <pre id="wsListOutput"></pre>
+      </section>
+
+      <section class="card">
+        <h2>7️⃣ Workspace Details</h2>
+        <input type="text" id="wsIdInput" placeholder="Workspace ID" />
+        <button onclick="getWorkspaceDetails()">Get Details</button>
+        <pre id="wsDetailsOutput"></pre>
+      </section>
+
+      <section class="card">
+        <h2>8️⃣ Invite Member</h2>
+        <input type="text" id="inviteWsId" placeholder="Workspace ID" />
+        <input type="email" id="inviteEmail" placeholder="Invitee Email" />
+        <select id="inviteRole">
+          <option value="Member">Member</option>
+          <option value="Admin">Admin</option>
+          <option value="Guest">Guest</option>
+        </select>
+        <button onclick="inviteMember()">Send Invite</button>
+        <pre id="inviteOutput"></pre>
+      </section>
+
+      <section class="card">
+        <h2>8️⃣b Accept Invite</h2>
+        <input type="text" id="acceptWsId" placeholder="Workspace ID" />
+        <input type="text" id="acceptToken" placeholder="Invite Token (from email link)" />
+        <button onclick="acceptInvite()">Accept Invite</button>
+        <pre id="acceptInviteOutput"></pre>
+      </section>
+
+      <section class="card">
+        <h2>9️⃣ Change Member Role</h2>
+        <input type="text" id="roleWsId" placeholder="Workspace ID" />
+        <input type="text" id="roleTargetUserId" placeholder="Target User ID" />
+        <select id="newRoleSelect">
+          <option value="Owner">Owner</option>
+          <option value="Admin">Admin</option>
+          <option value="Member">Member</option>
+          <option value="Guest">Guest</option>
+        </select>
+        <button onclick="changeRole()">Update Role</button>
+        <pre id="roleOutput"></pre>
+      </section>
+
+      <section class="card">
+        <h2>🔟 Remove Member</h2>
+        <input type="text" id="removeWsId" placeholder="Workspace ID" />
+        <input type="text" id="removeTargetUserId" placeholder="Target User ID" />
+        <button class="danger" onclick="removeMember()">Remove Member</button>
+        <pre id="removeOutput"></pre>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
